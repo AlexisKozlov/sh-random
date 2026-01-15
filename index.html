@@ -2,36 +2,34 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Аллоды Онлайн — Испытание Судьбы</title>
+<title>Беспроигрышная лотерея</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Marcellus&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Marcellus&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<div class="scene">
-  <div class="frame">
+<div class="screen">
 
-    <div class="title">
-      ИСПЫТАНИЕ СУДЬБЫ
-      <div class="subtitle">Беспроигрышная лотерея • Аллоды Онлайн</div>
+  <div class="panel">
+    <div class="header">
+      <div class="title">БЕСПРОИГРЫШНАЯ ЛОТЕРЕЯ</div>
+      <div class="subtitle">Аллоды Онлайн</div>
     </div>
 
-    <div class="altar">
-      <div class="magic-circle"></div>
+    <div class="content">
+      <div class="label">Счастливчик:</div>
+      <div id="result" class="result">— — —</div>
+      <div class="count">Участников: <span id="count"></span></div>
 
-      <div class="artifact">
-        <div class="range">Участников: <span id="count"></span></div>
-        <div id="result" class="result">— — —</div>
-        <button id="btn">ПРОБУДИТЬ АРТЕФАКТ</button>
-      </div>
+      <button id="btn">Потянуть удачу</button>
     </div>
 
     <div class="footer">
-      Трансляция в Discord • 15 января • 20:00 МСК
+      Розыгрыш • Discord • 15 января • 20:00 МСК
     </div>
-
   </div>
+
 </div>
 
 <script src="script.js"></script>

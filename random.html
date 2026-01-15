@@ -2,34 +2,25 @@
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
-<title>Аллоды Онлайн — Рандомайзер</title>
-<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cinzel:wght@600;800&display=swap" rel="stylesheet">
+<title>Аллоды Онлайн — Судьба Решает</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Marcellus&display=swap" rel="stylesheet">
+
 <style>
-:root {
-  --gold: #f5d37a;
-  --gold-dark: #b8892f;
-  --bg: #0e141c;
-  --panel: rgba(20,30,45,0.85);
-}
-
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   width: 100vw;
   height: 100vh;
   background:
-    radial-gradient(circle at top, #24344d 0%, #0b0f17 70%),
-    url("https://images.unsplash.com/photo-1528460033278-a6ba57020470") center/cover;
+    radial-gradient(circle at center, rgba(40,70,110,0.4), #05070c 70%),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee") center/cover;
   font-family: "Marcellus", serif;
-  color: var(--gold);
+  color: #e6d8a8;
   overflow: hidden;
 }
 
-/* 21:9 контейнер */
-.wrapper {
+/* 21:9 */
+.scene {
   width: 100%;
   height: 100%;
   display: flex;
@@ -37,168 +28,177 @@ body {
   justify-content: center;
 }
 
-.randomizer {
-  width: 90%;
-  max-width: 1800px;
+.frame {
+  width: 92%;
   aspect-ratio: 21 / 9;
-  background: linear-gradient(180deg, #1b2a3f, #0f1724);
-  border: 6px solid var(--gold-dark);
-  border-radius: 20px;
-  box-shadow: 0 0 80px rgba(245,211,122,0.25);
-  padding: 40px 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  position: relative;
+  background:
+    radial-gradient(circle at center, rgba(255,220,140,0.08), rgba(0,0,0,0.9)),
+    linear-gradient(180deg, #1b2433, #0b0f18);
+  border: 8px solid #caa44d;
+  border-radius: 24px;
+  box-shadow:
+    0 0 120px rgba(255,215,120,0.25),
+    inset 0 0 80px rgba(0,0,0,0.8);
+  padding: 40px;
 }
 
-/* Header */
-.header {
+/* Title */
+.title {
   text-align: center;
-}
-
-.logo {
   font-family: "Cinzel", serif;
   font-size: 48px;
-  letter-spacing: 3px;
-  text-shadow: 0 0 15px rgba(245,211,122,0.5);
+  letter-spacing: 4px;
+  text-shadow:
+    0 0 20px rgba(255,220,140,0.6),
+    0 0 40px rgba(255,200,80,0.4);
 }
 
-.subtitle {
-  margin-top: 10px;
-  font-size: 20px;
-  opacity: 0.9;
-}
-
-/* Main */
-.main {
-  flex: 1;
+/* Magic Circle */
+.circle-wrap {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.panel {
-  background: var(--panel);
-  border: 4px solid var(--gold-dark);
-  border-radius: 16px;
-  padding: 40px 60px;
-  text-align: center;
-  min-width: 600px;
+.magic-circle {
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  border: 4px solid rgba(120,200,255,0.5);
+  box-shadow:
+    0 0 40px rgba(120,200,255,0.5),
+    inset 0 0 40px rgba(120,200,255,0.3);
+  animation: spin 30s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Core */
+.core {
+  position: absolute;
+  width: 300px;
+  height: 180px;
+  background:
+    radial-gradient(circle, #2b3e5f, #0b1422);
+  border: 4px solid #d6b86a;
+  border-radius: 18px;
+  box-shadow:
+    0 0 40px rgba(255,220,140,0.5),
+    inset 0 0 30px rgba(0,0,0,0.7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .range {
-  font-size: 22px;
-  margin-bottom: 20px;
-  color: #ddd;
+  font-size: 18px;
+  opacity: 0.85;
 }
 
-.id-display {
+.result {
+  margin-top: 10px;
   font-family: "Cinzel", serif;
-  font-size: 72px;
-  margin: 20px 0;
-  padding: 20px 40px;
-  border: 3px solid var(--gold);
-  border-radius: 12px;
-  background: radial-gradient(circle, #2b3f5c, #101a29);
-  box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+  font-size: 56px;
+  color: #ffe9a8;
+  text-shadow:
+    0 0 20px rgba(255,220,140,0.6);
 }
 
-/* Button */
-button {
-  font-family: "Cinzel", serif;
-  font-size: 28px;
-  padding: 14px 60px;
+/* Rune Button */
+.rune {
   margin-top: 20px;
-  cursor: pointer;
-  color: #2b1c00;
-  background: linear-gradient(180deg, #ffe6a1, #d4a84a);
+  font-family: "Cinzel", serif;
+  font-size: 20px;
+  padding: 12px 40px;
+  background:
+    radial-gradient(circle, #ffe8a0, #c59b45);
+  color: #2a1b00;
   border: none;
-  border-radius: 10px;
+  border-radius: 999px;
+  cursor: pointer;
   box-shadow:
-    0 6px 0 #8c6725,
-    0 0 25px rgba(245,211,122,0.5);
-  transition: transform 0.1s;
+    0 0 25px rgba(255,220,140,0.6);
 }
 
-button:active {
-  transform: translateY(4px);
-  box-shadow:
-    0 2px 0 #8c6725;
+.rune:active {
+  transform: scale(0.96);
+}
+
+/* Roll effect */
+.roll {
+  animation: flicker 0.08s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
 }
 
 /* Footer */
 .footer {
-  display: flex;
-  justify-content: space-between;
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: center;
   font-size: 16px;
   opacity: 0.8;
-}
-
-/* Animation */
-.roll {
-  animation: roll 0.08s infinite;
-}
-
-@keyframes roll {
-  0% { filter: blur(0); }
-  50% { filter: blur(1px); }
-  100% { filter: blur(0); }
 }
 </style>
 </head>
 
 <body>
-<div class="wrapper">
-  <div class="randomizer">
+<div class="scene">
+  <div class="frame">
 
-    <div class="header">
-      <div class="logo">АЛЛОДЫ ОНЛАЙН</div>
-      <div class="subtitle">Беспроигрышная лотерея — Рандомайзер</div>
-    </div>
+    <div class="title">ИСПЫТАНИЕ СУДЬБЫ</div>
 
-    <div class="main">
-      <div class="panel">
-        <div class="range">Выбираем случайного победителя</div>
-        <div class="range">Диапазон ID: <b>1 — 7016</b></div>
+    <div class="circle-wrap">
+      <div class="magic-circle"></div>
 
-        <div id="result" class="id-display">ID 0000</div>
-
-        <button onclick="start()">START</button>
+      <div class="core">
+        <div class="range">Диапазон ID: 1 — 7016</div>
+        <div id="res" class="result">ID 0000</div>
+        <button class="rune" onclick="roll()">ПРОБУДИТЬ АРТЕФАКТ</button>
       </div>
     </div>
 
     <div class="footer">
-      <div>Трансляция: Discord</div>
-      <div>15 января • 20:00 МСК</div>
+      Аллоды Онлайн • Розыгрыш в Discord • 15 января 20:00 МСК
     </div>
 
   </div>
 </div>
 
 <script>
-let rolling = false;
+let active = false;
 
-function start() {
-  if (rolling) return;
-  rolling = true;
+function roll() {
+  if (active) return;
+  active = true;
 
-  const result = document.getElementById("result");
-  result.classList.add("roll");
+  const res = document.getElementById("res");
+  res.classList.add("roll");
 
-  let counter = 0;
-  const interval = setInterval(() => {
-    const num = Math.floor(Math.random() * 7016) + 1;
-    result.textContent = "ID " + num.toString().padStart(4, "0");
-    counter++;
+  const timer = setInterval(() => {
+    const n = Math.floor(Math.random() * 7016) + 1;
+    res.textContent = "ID " + n.toString().padStart(4,"0");
   }, 80);
 
   setTimeout(() => {
-    clearInterval(interval);
+    clearInterval(timer);
     const finalID = Math.floor(Math.random() * 7016) + 1;
-    result.textContent = "ID " + finalID;
-    result.classList.remove("roll");
-    rolling = false;
-  }, 3000);
+    res.textContent = "ID " + finalID;
+    res.classList.remove("roll");
+    active = false;
+  }, 3500);
 }
 </script>
 </body>

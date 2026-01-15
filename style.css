@@ -1,17 +1,15 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
   width: 100vw;
   height: 100vh;
-  background:
-    radial-gradient(circle at top, rgba(70,100,160,0.35), #05070c 65%),
-    linear-gradient(180deg, #0b0f18, #020409);
   font-family: "Marcellus", serif;
   color: #f2e6b8;
   overflow: hidden;
+
+  /* Астральный фон */
+  background:
+    radial-gradient(circle at center, rgba(0,0,0,0.5), rgba(0,0,0,0.9)),
+    url("assets/bg-astral.jpg") center / cover no-repeat;
 }
 
 /* 21:9 */
@@ -23,98 +21,72 @@ body {
   justify-content: center;
 }
 
+/* Основная панель */
 .panel {
-  width: 90%;
+  width: 92%;
   aspect-ratio: 21 / 9;
+  position: relative;
+
   background:
-    radial-gradient(circle at center, rgba(255,215,120,0.08), rgba(0,0,0,0.95));
+    linear-gradient(180deg, rgba(10,15,25,0.85), rgba(5,8,14,0.95)),
+    url("assets/stone.png");
+
   border: 6px solid #c9a24b;
   border-radius: 22px;
+
   box-shadow:
-    0 0 120px rgba(255,215,120,0.25),
-    inset 0 0 80px rgba(0,0,0,0.85);
+    0 0 140px rgba(255,215,120,0.25),
+    inset 0 0 120px rgba(0,0,0,0.9);
+
   padding: 36px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
 }
 
-/* Header */
-.header {
-  text-align: center;
+/* Шум — ОЧЕНЬ важно */
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("assets/noise.png");
+  opacity: 0.08;
+  pointer-events: none;
 }
 
+/* Заголовок */
 .title {
   font-family: "Cinzel", serif;
   font-size: 44px;
   letter-spacing: 4px;
-  text-shadow: 0 0 25px rgba(255,215,120,0.7);
-}
-
-.subtitle {
-  margin-top: 6px;
-  font-size: 18px;
-  opacity: 0.85;
-}
-
-/* Content */
-.content {
   text-align: center;
+  text-shadow:
+    0 0 20px rgba(255,215,120,0.7),
+    0 0 50px rgba(255,200,80,0.4);
 }
 
-.label {
-  font-size: 18px;
-  opacity: 0.8;
-}
-
+/* Результат */
 .result {
-  margin: 20px 0;
   font-family: "Cinzel", serif;
   font-size: 42px;
-  letter-spacing: 1px;
-  text-shadow: 0 0 25px rgba(255,215,120,0.8);
-  min-height: 56px;
+  text-align: center;
+  margin: 20px 0;
+
+  text-shadow:
+    0 0 25px rgba(255,215,120,0.9);
 }
 
-.count {
-  font-size: 14px;
-  opacity: 0.7;
-  margin-bottom: 26px;
-}
-
-/* Button */
+/* Кнопка */
 button {
   font-family: "Cinzel", serif;
   font-size: 18px;
   padding: 14px 48px;
+
+  background:
+    radial-gradient(circle at top, #ffe8a0, #c59b45);
+
+  color: #2a1b00;
   border: none;
   border-radius: 999px;
-  cursor: pointer;
-  color: #2a1b00;
-  background:
-    radial-gradient(circle, #ffe8a0, #c59b45);
+
   box-shadow:
-    0 0 30px rgba(255,215,120,0.6);
-}
-
-button:active {
-  transform: scale(0.97);
-}
-
-/* Roll animation */
-.roll {
-  animation: glow 0.08s infinite;
-}
-
-@keyframes glow {
-  0%   { opacity: 1; }
-  50%  { opacity: 0.55; }
-  100% { opacity: 1; }
-}
-
-/* Footer */
-.footer {
-  text-align: center;
-  font-size: 14px;
-  opacity: 0.7;
+    0 0 30px rgba(255,215,120,0.6),
+    inset 0 0 6px rgba(255,255,255,0.6);
 }

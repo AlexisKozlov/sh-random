@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>Аллоды Онлайн — Рандомайзер</title>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cinzel:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #f5d37a;
+  --gold-dark: #b8892f;
+  --bg: #0e141c;
+  --panel: rgba(20,30,45,0.85);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background:
+    radial-gradient(circle at top, #24344d 0%, #0b0f17 70%),
+    url("https://images.unsplash.com/photo-1528460033278-a6ba57020470") center/cover;
+  font-family: "Marcellus", serif;
+  color: var(--gold);
+  overflow: hidden;
+}
+
+/* 21:9 контейнер */
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.randomizer {
+  width: 90%;
+  max-width: 1800px;
+  aspect-ratio: 21 / 9;
+  background: linear-gradient(180deg, #1b2a3f, #0f1724);
+  border: 6px solid var(--gold-dark);
+  border-radius: 20px;
+  box-shadow: 0 0 80px rgba(245,211,122,0.25);
+  padding: 40px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Header */
+.header {
+  text-align: center;
+}
+
+.logo {
+  font-family: "Cinzel", serif;
+  font-size: 48px;
+  letter-spacing: 3px;
+  text-shadow: 0 0 15px rgba(245,211,122,0.5);
+}
+
+.subtitle {
+  margin-top: 10px;
+  font-size: 20px;
+  opacity: 0.9;
+}
+
+/* Main */
+.main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panel {
+  background: var(--panel);
+  border: 4px solid var(--gold-dark);
+  border-radius: 16px;
+  padding: 40px 60px;
+  text-align: center;
+  min-width: 600px;
+}
+
+.range {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #ddd;
+}
+
+.id-display {
+  font-family: "Cinzel", serif;
+  font-size: 72px;
+  margin: 20px 0;
+  padding: 20px 40px;
+  border: 3px solid var(--gold);
+  border-radius: 12px;
+  background: radial-gradient(circle, #2b3f5c, #101a29);
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+}
+
+/* Button */
+button {
+  font-family: "Cinzel", serif;
+  font-size: 28px;
+  padding: 14px 60px;
+  margin-top: 20px;
+  cursor: pointer;
+  color: #2b1c00;
+  background: linear-gradient(180deg, #ffe6a1, #d4a84a);
+  border: none;
+  border-radius: 10px;
+  box-shadow:
+    0 6px 0 #8c6725,
+    0 0 25px rgba(245,211,122,0.5);
+  transition: transform 0.1s;
+}
+
+button:active {
+  transform: translateY(4px);
+  box-shadow:
+    0 2px 0 #8c6725;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+/* Animation */
+.roll {
+  animation: roll 0.08s infinite;
+}
+
+@keyframes roll {
+  0% { filter: blur(0); }
+  50% { filter: blur(1px); }
+  100% { filter: blur(0); }
+}
+</style>
+</head>
+
+<body>
+<div class="wrapper">
+  <div class="randomizer">
+
+    <div class="header">
+      <div class="logo">АЛЛОДЫ ОНЛАЙН</div>
+      <div class="subtitle">Беспроигрышная лотерея — Рандомайзер</div>
+    </div>
+
+    <div class="main">
+      <div class="panel">
+        <div class="range">Выбираем случайного победителя</div>
+        <div class="range">Диапазон ID: <b>1 — 7016</b></div>
+
+        <div id="result" class="id-display">ID 0000</div>
+
+        <button onclick="start()">START</button>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div>Трансляция: Discord</div>
+      <div>15 января • 20:00 МСК</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let rolling = false;
+
+function start() {
+  if (rolling) return;
+  rolling = true;
+
+  const result = document.getElementById("result");
+  result.classList.add("roll");
+
+  let counter = 0;
+  const interval = setInterval(() => {
+    const num = Math.floor(Math.random() * 7016) + 1;
+    result.textContent = "ID " + num.toString().padStart(4, "0");
+    counter++;
+  }, 80);
+
+  setTimeout(() => {
+    clearInterval(interval);
+    const finalID = Math.floor(Math.random() * 7016) + 1;
+    result.textContent = "ID " + finalID;
+    result.classList.remove("roll");
+    rolling = false;
+  }, 3000);
+}
+</script>
+</body>
+</html>

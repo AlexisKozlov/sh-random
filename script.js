@@ -22,25 +22,24 @@ const players = [
 
 document.getElementById("count").textContent = players.length;
 
-const res = document.getElementById("result");
+const result = document.getElementById("result");
 const btn = document.getElementById("btn");
-let active = false;
+let rolling = false;
 
 btn.onclick = () => {
-  if (active) return;
-  active = true;
-  res.classList.add("roll");
+  if (rolling) return;
+  rolling = true;
 
-  const roll = setInterval(() => {
-    const name = players[Math.floor(Math.random() * players.length)];
-    res.textContent = name;
+  result.classList.add("roll");
+
+  const interval = setInterval(() => {
+    result.textContent = players[Math.floor(Math.random() * players.length)];
   }, 70);
 
   setTimeout(() => {
-    clearInterval(roll);
-    const winner = players[Math.floor(Math.random() * players.length)];
-    res.textContent = winner;
-    res.classList.remove("roll");
-    active = false;
-  }, 3500);
+    clearInterval(interval);
+    result.textContent = players[Math.floor(Math.random() * players.length)];
+    result.classList.remove("roll");
+    rolling = false;
+  }, 3000);
 };

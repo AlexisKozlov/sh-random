@@ -39,6 +39,8 @@ body {
     inset 0 0 120px rgba(0,0,0,0.9);
 
   padding: 36px;
+    display: flex;
+  flex-direction: column;
 }
 
 /* Шум — ОЧЕНЬ важно */
